@@ -1,0 +1,104 @@
+*				{margin:0; padding:0; box-sizing:border-box; -moz-box-sizing: border-box;}
+
+.titre1			{font-size:2.4rem; text-align:center; padding:20px 10px 10px 10px; font-weight:bold;}
+.titre2			{font-size:1.4rem; text-align:center; padding: 5px 10px 20px 10px; margin:0 33% 10px 33%; border-bottom:2px solid black; }
+.warning		{font-size:1.4rem; text-align:center; padding:10px;}
+
+.bloc			{width:700px; padding:15px 8px 10px 8px; margin:0 auto; font-family: Georgia, "Times New Roman", serif; font-size:1.2rem; line-height:140%;}
+
+.orange			{border:1px black solid; background-color:#e69a28; width:100%; height:4px}
+
+.bloc table		{margin:8px 0 0 0; padding:0; }
+.bloc table th	{font-weight:bold; font-size:1.0rem; vertical-align:bottom; border-bottom:1px solid black}
+.bloc table td	{min-width:25px;   font-size:1.0rem; }
+
+.sansSerif		{font-family: arial, sans-serif;}
+.bloc h1		{padding:0; text-transform:uppercase; letter-spacing:1px; color:#6D0000; font-size:1.6rem; line-height:1.8rem; font-weight:bold; }
+.bloc h1:first-letter {font-size:2.4rem;}
+.bloc h2		{font-size:1.2rem; font-weight:normal;}
+.trad			{margin:2px 0 1px 0; font-family: verdana, arial, sans-serif; }
+
+.bloc a:link, .bloc a:visited, .bloc a:hover {text-decoration:none; color:#B30303; }   
+.blocCarte a	 {text-decoration:none; color:black; }   
+.trad a:link, .trad a:hover, .trad a:visited {text-decoration:underline; color:#B30303; font-weight:normal;}
+.blocCarte .trad 	{display:none}
+
+.paragraphe		{padding-top:8px;}
+.carac			{display:inline-block; padding-left:12px; text-align:center}
+.description	{padding:8px 0 8px 0; text-align:justify;}
+.red			{color:#6D0000;}
+.rub			{color:#6D0000; margin:10px 0 5px 0; border-bottom:1px solid #B30303; font-size:1.4rem; text-transform:uppercase; font-weight:bold;}
+.rub:first-letter{font-size:1.6rem;}
+.source   		{padding:0; text-align:left; letter-spacing:-1px; font-family: verdana, arial, sans-serif; font-size:1.0rem; }
+
+p				{padding:0; margin:9px 0 9px 0;}
+.center			{text-align:center;}
+.petit    		{font-size:1.1rem; }
+.trespetit 		{font-size:1.0rem; }
+
+#Breadcrumbs ol {list-style-type: none;}
+#Breadcrumbs ol li {display: inline; color: #999;}
+#Breadcrumbs ol li+li:before {content: "\203A"}
+
+/* monstres */
+/* 
+table.carac 	{margin:0}
+table.carac td	{padding:0 15px 0 0; font-size:1.2rem;}
+*/
+img.picture		{max-width:100%; border:4px solid #888; text-align:center;}
+div svg			{width:100%; height:5px;}
+div .variant	{background-color:#DBE2C2;
+				 border-top:4px solid #404040; border-bottom:4px solid #404040;
+				 padding:10px 10px 0 10px; margin:6px 0 0 0;}
+
+.colG			{display:inline-block; width:48.5%; margin:0px 0% 0 1.5%; vertical-align:top; } 
+.colD			{display:inline-block; width:48.5%; margin:0px 1.5% 0 0%; vertical-align:top; } 
+.colG .bloc		{width:100%; }
+.colD .bloc		{width:100%; }
+
+.niveauSort		{width:90%; font-size:1.8rem; font-weight:bold; text-align:center; background-color:white; color:black;
+				 border:3px solid black; padding:5px; margin:10px auto 0 auto; }
+
+.blocCarte		{display:inline-block; position:relative; width:6.3cm; height:8.8cm; margin:1px 0 0 1px; padding:3px; vertical-align:top; border:5px solid black;
+				 overflow:hidden;
+				 font-family: Georgia, "Times New Roman", serif; font-size:1.05rem; line-height:110%; text-align:left;} 
+.blocCarteP    	{font-size:0.95rem; color:black}
+.blocCarteTP	{font-size:0.85rem; color:black}
+.blocCarte .overflow	{font-size:2rem; font-weight:bold; position:absolute; top:8.15cm; right:5px; color:white; z-index:10}
+.blocCarte .nooverflow	{display:none;}
+.blocCarte h1	{font-size:1.3rem; line-height:1.2rem; background-color:#6D0000; color:white; padding:4px 4px 3px 4px;}
+.blocCarte h2	{font-size:1.1rem; font-weight:normal; padding-top:3px;}
+.blocCarte .description	{padding:4px 0 0 0;}
+.blocCarte .source	{position:absolute; bottom:-1px; left:0px; background:black; color:white; width:100%; font-size:.9rem; letter-spacing:0px; padding:4px 0 2px 0}
+div.monstre     {border: 2px solid; padding: 10px}
+div.monstre_none     {border-color: #030303}
+div.monstre_Common     {border-color: #404040}
+div.monstre_Uncommon     {border-color: #03B303}
+div.monstre_Rare     {border-color: #049fce}
+div.monstre_Very     {border-color: #0418ce}
+div.monstre_Artifact     {border-color: #8103b3}
+div.monstre_Legendary     {border-color: #c58104}
+div.monstre p		{margin:5px 0 5px 0;}
+.petit    			{line-height:120%;}
+.trespetit 			{line-height:115%;}
+
+.ads	{text-align:center; margin-top:20px;}
+
+/* poisons & herbes */
+img.poison, img.herbe {float:right; border:0px; margin:0 0 5px 10px}
+
+@media print {
+	html 		{font-size:50%;}
+	.bloc		{width:100%; min-width:200px;}
+	.colG		{display:inline-block; page-break-inside:avoid; } 
+	.colD		{display:inline-block; page-break-inside:avoid; } 
+	.bloc a:link, .bloc a:visited, .bloc a:hover {color:#000; }   
+}
+
+@media only screen and (max-device-width:980px) { 
+	html 		{font-size:82.5%;}
+	.colG		{width:100%; margin:20px 0 0 0; } 
+	.colD		{width:100%; margin:20px 0 0 0; } 
+	.bloc		{width:100%; min-width:auto; padding:3%; line-height:120%;}
+	.carac		{padding-left:6px;}
+}
