@@ -6,21 +6,23 @@ import { renderItemType } from './../Util'
 function selectItemsByFilter (filter) {
   return items.filter(item => item.type && item.type === filter)
 }
-function renderItemTypeBlock (type) {
-  return `${renderItemType(type)} (${selectItemsByFilter(type).length})`
+function selectItemsByRarity (itemList, rarity) {
+  if (rarity !== null) {
+    itemList = itemList.filter(item => item.rarity && item.rarity === rarity)
+  }
+  return itemList;
 }
-
 function ItemWrapper () {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedRarity, setSelectedRarity] = useState(null);
   function selectItems (filter) {
-    let itemsFiltered = selectItemsByFilter(filter)
-    if (selectedRarity !== null) {
-      itemsFiltered = itemsFiltered.filter(item => item.rarity && item.rarity === selectedRarity)
-    }
-    console.log(filter, selectedRarity, itemsFiltered.length);
+    let itemsFiltered = selectItemsByRarity(selectItemsByFilter(filter), selectedRarity)
     setSelectedItem(itemsFiltered[~~(Math.random() * itemsFiltered.length)])
   }
+  function renderItemTypeBlock (type) {
+    return `${renderItemType(type)} (${selectItemsByRarity(selectItemsByFilter(type), selectedRarity).length})`
+  }
+  console.log('itemwrapper');
   return (
     <>
       <div style={{ width: '100%', backgroundColor: 'black', display: 'flex' }}>
@@ -47,7 +49,6 @@ function ItemWrapper () {
         <button onClick={() => setSelectedRarity('Uncommon')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px 0px' }}>Uncommon</button>
         <button onClick={() => setSelectedRarity('Rare')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px 0px' }}>Rare</button>
         <button onClick={() => setSelectedRarity('Very Rare')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px 0px' }}>Very Rare</button>
-        <button onClick={() => setSelectedRarity('Common')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px 0px' }}>Common</button>
         <button onClick={() => setSelectedRarity('Artifact')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px 0px' }}>Artifact</button>
         <button onClick={() => setSelectedRarity('Legendary')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px 0px' }}>Legendary</button>
       </div>

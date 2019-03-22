@@ -5,7 +5,6 @@ import { LSButtons } from './LSButtons';
 
 function ParseLoot (lootString) {
   let lootArray = lootString.split(/,(?![^(]*\))/)
-  console.log(lootArray)
   return lootArray;
 }
 

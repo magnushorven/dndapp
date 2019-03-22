@@ -74,10 +74,10 @@ div.monstre     {border: 2px solid; padding: 10px}
 div.monstre_none     {border-color: #030303}
 div.monstre_Common     {border-color: #404040}
 div.monstre_Uncommon     {border-color: #03B303}
-div.monstre_Rare     {border-color: #049fce}
-div.monstre_Very     {border-color: #0418ce}
-div.monstre_Artifact     {border-color: #8103b3}
-div.monstre_Legendary     {border-color: #c58104}
+div.monstre_Rare     {border-color: #0418ce}
+div.monstre_Very     {border-color: #8103b3}
+div.monstre_Artifact     {border-color: #B30303}
+div.monstre_Legendary     {border-color: #e69a28}
 div.monstre p		{margin:5px 0 5px 0;}
 .petit    			{line-height:120%;}
 .trespetit 			{line-height:115%;}

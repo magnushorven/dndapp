@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Block.css';
-import { Button } from './Button';
-import { saveLs, resetLs, getLs } from './../Util';
+import { LSButtons } from './LSButtons';
 
 function ParseNpc (npcString) {
   var npcArray = /^(\w+\s?\w+?):\s(\w+)\s(\w{0,}-?\w{0,})\s(\w+),\s(\w+).\sStr\s(\d+),\sDex\s(\d+),\sCon\s(\d+),\sInt\s(\d+),\sWis\s(\d+),\sCha\s(\d+).\s?([A-Za-z\s\d,-]+).\s?([A-Za-z\s\d,-]+).\s?($|\s?([A-Za-z\s\d,-]+)?)./.exec(npcString);
@@ -30,7 +29,7 @@ function NpcBlock ({ npcString }) {
             <em>{npc[2]} {npc[3]} {npc[4]}, {npc[5]}</em>
           </h2>
           <div>
-            <svg><polyline points="0,0 460,2.5 0,5" style={{ fill: "#922610", stroke: "#922610" }}></polyline></svg>
+            <svg><polyline points="0,0 700,2.5 0,5" style={{ fill: "#922610", stroke: "#922610" }}></polyline></svg>
           </div>
           <div>
             <div className="carac">
@@ -59,16 +58,14 @@ function NpcBlock ({ npcString }) {
             </div>
           </div>
           <div>
-            <svg><polyline points="0,0 460,2.5 0,5" style={{ fill: "#922610", stroke: "#922610" }}></polyline></svg>
+            <svg><polyline points="0,0 700,2.5 0,5" style={{ fill: "#922610", stroke: "#922610" }}></polyline></svg>
           </div>
           {npc[12] ? (<p>{npc[12]}</p>) : null}
           {npc[13] ? (<p>{npc[13]}</p>) : null}
           {npc[14] ? (<p>{npc[14]}</p>) : null}
         </div>
       </div>
-      <Button text='save' onClick={() => saveLs('npc', npcString)} />
-      <Button text='reset' onClick={() => resetLs('npc')} />
-      <Button text='get' onClick={() => console.log(getLs('npc'))} />
+      <LSButtons localStorageString={'npc'} string={npcString} />
     </div>
   );
 }

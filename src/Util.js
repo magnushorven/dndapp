@@ -45,7 +45,7 @@ export function renderItemType (type) {
       itemType = 'Martial'
       break;
     case 'P':
-      itemType = 'Piercing'
+      itemType = 'Potion'
       break;
     case 'S':
       itemType = 'Slashing'
