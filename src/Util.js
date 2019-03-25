@@ -74,3 +74,17 @@ export function renderItemType (type) {
   }
   return itemType;
 }
+export function formatMagicShop (description, location, name, items) {
+  return { description: description, location: location, name: name, items: items }
+}
+
+export function getRandomSubarray (items, size) {
+  var shuffled = items.slice(0), i = items.length, temp, index;
+  while (i--) {
+    index = Math.floor((i + 1) * Math.random());
+    temp = shuffled[index];
+    shuffled[index] = shuffled[i];
+    shuffled[i] = temp;
+  }
+  return shuffled.slice(0, size);
+}

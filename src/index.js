@@ -10,3 +10,11 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+window.addEventListener('storage', function (e) {
+  if (e.storageArea === sessionStorage) {
+    console.log('Session storage change');
+  } else {
+    console.log('some other stoe storage change');
+  }
+});

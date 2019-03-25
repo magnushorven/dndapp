@@ -3,6 +3,10 @@ import './../App.css';
 import NpcWrapper from './NpcWrapper.js';
 import LootWrapper from './LootWrapper.js';
 import ItemWrapper from './ItemWrapper.js';
+import MagicShopWrapper from './MagicShopWrapper.js';
+import TrapWrapper from './TrapWrapper.js';
+import SymbolWrapper from './SymbolWrapper.js';
+import WeirdMagicItemWrapper from './WeirdMagicItemWrapper.js';
 
 function Menu () {
   const [selectedMenu, setSelectedMenu] = useState(null);
@@ -13,6 +17,18 @@ function Menu () {
       break;
     case 'items':
       wrapper = <ItemWrapper />
+      break;
+    case 'magic_shops':
+      wrapper = <MagicShopWrapper />
+      break;
+    case 'traps':
+      wrapper = <TrapWrapper />
+      break;
+    case 'symbols':
+      wrapper = <SymbolWrapper />
+      break;
+    case 'weird_magic_items':
+      wrapper = <WeirdMagicItemWrapper />
       break;
     default:
       wrapper = <NpcWrapper />

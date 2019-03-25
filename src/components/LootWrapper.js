@@ -5,7 +5,7 @@ import cr6_individual_loot from './../statics/loot/cr6_individual_loot.json';
 import LootBlock from './LootBlock.js';
 
 function LootWrapper () {
-  const [selectedLoot, setSelectedLoot] = useState([]);
+  const [selectedLoot, setSelectedLoot] = useState(cr5_individual_loot);
   const [randomLoot, setRandomLoot] = useState(0);
   function somefunction () {
     setRandomLoot(~~(Math.random() * selectedLoot.length));
