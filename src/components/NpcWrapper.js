@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import npc_dragonborn_female from './../statics/npc/npc_dragonborn_female.json';
 import npc_dragonborn_male from './../statics/npc/npc_dragonborn_male.json';
 import npc_dwarf_female from './../statics/npc/npc_dwarf_female.json';
@@ -16,6 +17,23 @@ import npc_human_male from './../statics/npc/npc_human_male.json';
 import npc_tiefling_female from './../statics/npc/npc_tiefling_female.json';
 import npc_tiefling_male from './../statics/npc/npc_tiefling_male.json';
 import NpcBlock from './NpcBlock.js';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    backgroundColor: '#fff',
+    width: '100%',
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
+
 
 function PopulateNpcs () {
   return {
@@ -37,37 +55,40 @@ function PopulateNpcs () {
     'npc_tiefling_male': npc_tiefling_male
   };
 }
-function NpcWrapper () {
+const NpcWrapper = (props) => {
+  const { classes } = props;
   const [npcs] = useState(PopulateNpcs());
-  const [selectedNpcs, setSelectedNpcs] = useState(npcs.npc_dragonborn_female);
-  const [randomNpc, setRandomNpc] = useState(0);
-  if (!selectedNpcs) { return null; }
+  const [selectedNpcType, setSelectedNpcType] = useState('npc_dragonborn_female');
+  const [selectedNpc, setSelectedNpc] = useState(null);
+  useEffect(somefunction, [selectedNpcType])
   function somefunction () {
-    setRandomNpc(~~(Math.random() * selectedNpcs.length));
+    const npcFiltered = npcs[`${selectedNpcType}`]
+    setSelectedNpc(npcFiltered[~~(Math.random() * npcFiltered.length)])
   }
+
   return (
     <>
-      <div style={{ width: '100%', backgroundColor: 'black', display: 'flex' }}>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_dragonborn_female); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Dragonborn Female</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_dragonborn_male); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Dragonborn Male</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_dwarf_female); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Dwarf Famle</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_dwarf_male); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Dwarf Male</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_elf_female); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Elf Female</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_elf_male); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Elf Male</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_gnome_female); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Gnome Female</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_gnome_male); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Gnome Male</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_half_elf_female); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Half Elf Female</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_half_elf_male); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Half Elf Male</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_half_orc_female); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Half Orc Female</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_half_orc_male); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Half Orc Male</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_human_female); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Human Female</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_human_male); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Human Male</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_tiefling_female); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Tiefling Female</button>
-        <button onClick={() => { setSelectedNpcs(npcs.npc_tiefling_male); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Tiefling Male</button>
+      <div className={classes.root}>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_dragonborn_female' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_dragonborn_female')}>Dragonborn Female</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_dragonborn_male' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_dragonborn_male')}>Dragonborn Male</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_dwarf_female' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_dwarf_female')}>Dwarf Famle</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_dwarf_male' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_dwarf_male')}>Dwarf Male</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_elf_female' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_elf_female')}>Elf Female</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_elf_male' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_elf_male')}>Elf Male</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_gnome_female' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_gnome_female')}>Gnome Female</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_gnome_male' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_gnome_male')}>Gnome Male</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_half_elf_female' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_half_elf_female')}>Half Elf Female</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_half_elf_male' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_half_elf_male')}>Half Elf Male</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_half_orc_female' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_half_orc_female')}>Half Orc Female</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_half_orc_male' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_half_orc_male')}>Half Orc Male</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_human_female' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_human_female')}>Human Female</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_human_male' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_human_male')}>Human Male</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_tiefling_female' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_tiefling_female')}>Tiefling Female</Button>
+        <Button size="small" variant="contained" className={classes.button} color={selectedNpcType === 'npc_tiefling_male' ? 'primary' : 'default'} onClick={() => setSelectedNpcType('npc_tiefling_male')}>Tiefling Male</Button>
       </div>
-      <NpcBlock key={`npc${randomNpc}`} npcString={selectedNpcs[randomNpc]} />
+      <NpcBlock key={~~(Math.random() * 10000)} npcString={selectedNpc} />
     </>
   )
 }
 
-export default NpcWrapper;
+export default withStyles(styles)(NpcWrapper);

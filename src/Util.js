@@ -1,10 +1,11 @@
 export function resetLs (type, i = null) {
+  console.log('resetLs', type, i)
   let items;
-  if (i != null) {
+  if (i !== null) {
     items = getLs(`${type}`)
   }
-  localStorage.clear(`${type}`);
-  if (i != null) {
+  localStorage.removeItem(`${type}`);
+  if (i !== null) {
     saveLs(`${type}`, [].concat(items.slice(0, i), items.slice(i + 1, items.length)))
   }
 }
@@ -71,6 +72,8 @@ export function renderItemType (type) {
     case 'WD':
       itemType = 'Wand'
       break;
+    default:
+      break;
   }
   return itemType;
 }
@@ -87,4 +90,7 @@ export function getRandomSubarray (items, size) {
     shuffled[i] = temp;
   }
   return shuffled.slice(0, size);
+}
+export function ParseAbilityScoreAndModifier (score) {
+  return `${score} (${~~(((score < 10 ? score - 1 : score) - 10) / 2)})`
 }

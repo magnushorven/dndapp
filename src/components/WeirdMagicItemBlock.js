@@ -1,14 +1,14 @@
 import React from 'react';
 import './Block.css';
-import { LSButtons } from './LSButtons';
+import LSButtons from './LSButtons';
 
-function WeirdMagicItemBlock ({ weirdMagicItemString }) {
+function WeirdMagicItemBlock ({ weirdMagicItemString, showButtons = true }) {
   return (
     <div className="bloc">
       <div className="monstre">
         {weirdMagicItemString && weirdMagicItemString}
       </div>
-      <LSButtons localStorageString={'weirdmagicitem'} string={weirdMagicItemString} />
+      {showButtons && <LSButtons localStorageString={'weirdmagicitem'} string={weirdMagicItemString} />}
     </div>
   );
 }

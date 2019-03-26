@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import './../App.css';
 import NpcWrapper from './NpcWrapper.js';
 import LootWrapper from './LootWrapper.js';
@@ -7,9 +8,28 @@ import MagicShopWrapper from './MagicShopWrapper.js';
 import TrapWrapper from './TrapWrapper.js';
 import SymbolWrapper from './SymbolWrapper.js';
 import WeirdMagicItemWrapper from './WeirdMagicItemWrapper.js';
+import MonsterWrapper from './MonsterWrapper.js';
+import SavedWrapper from './SavedWrapper.js';
+import Button from '@material-ui/core/Button';
 
-function Menu () {
-  const [selectedMenu, setSelectedMenu] = useState(null);
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    backgroundColor: '#fff',
+    width: '100%',
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
+
+const Menu = (props) => {
+  const { classes } = props;
+  const [selectedMenu, setSelectedMenu] = useState('monsters');
   let wrapper;
   switch (selectedMenu) {
     case 'loot':
@@ -21,6 +41,9 @@ function Menu () {
     case 'magic_shops':
       wrapper = <MagicShopWrapper />
       break;
+    case 'monsters':
+      wrapper = <MonsterWrapper />
+      break;
     case 'traps':
       wrapper = <TrapWrapper />
       break;
@@ -30,24 +53,29 @@ function Menu () {
     case 'weird_magic_items':
       wrapper = <WeirdMagicItemWrapper />
       break;
+    case 'saved':
+      wrapper = <SavedWrapper />
+      break;
     default:
       wrapper = <NpcWrapper />
       break;
   }
   return (
     <>
-      <div style={{ width: '100%', backgroundColor: 'black', display: 'flex' }}>
-        <button onClick={() => setSelectedMenu('loot')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Loot</button>
-        <button onClick={() => setSelectedMenu('items')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Items</button>
-        <button onClick={() => setSelectedMenu('magic_shops')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Magic Shops</button>
-        <button onClick={() => setSelectedMenu('npcs')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Npc</button>
-        <button onClick={() => setSelectedMenu('symbols')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Symbols</button>
-        <button onClick={() => setSelectedMenu('traps')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Trap</button>
-        <button onClick={() => setSelectedMenu('weird_magic_items')} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Weird magic items</button>
+      <div className={classes.root}>
+        <Button variant="contained" className={classes.button} color={selectedMenu === 'loot' ? 'primary' : 'default'} onClick={() => setSelectedMenu('loot')}>Loot</Button>
+        <Button variant="contained" className={classes.button} color={selectedMenu === 'items' ? 'primary' : 'default'} onClick={() => setSelectedMenu('items')}>Items</Button>
+        <Button variant="contained" className={classes.button} color={selectedMenu === 'magic_shops' ? 'primary' : 'default'} onClick={() => setSelectedMenu('magic_shops')}>Magic Shops</Button>
+        <Button variant="contained" className={classes.button} color={selectedMenu === 'monsters' ? 'primary' : 'default'} onClick={() => setSelectedMenu('monsters')}>Monsters</Button>
+        <Button variant="contained" className={classes.button} color={selectedMenu === 'npcs' ? 'primary' : 'default'} onClick={() => setSelectedMenu('npcs')}>Npc</Button>
+        <Button variant="contained" className={classes.button} color={selectedMenu === 'symbols' ? 'primary' : 'default'} onClick={() => setSelectedMenu('symbols')}>Symbols</Button>
+        <Button variant="contained" className={classes.button} color={selectedMenu === 'traps' ? 'primary' : 'default'} onClick={() => setSelectedMenu('traps')}>Trap</Button>
+        <Button variant="contained" className={classes.button} color={selectedMenu === 'weird_magic_items' ? 'primary' : 'default'} onClick={() => setSelectedMenu('weird_magic_items')}>Weird magic items</Button>
+        <Button variant="contained" className={classes.button} color={selectedMenu === 'saved' ? 'primary' : 'default'} onClick={() => setSelectedMenu('saved')}>Saved</Button>
       </div>
       {wrapper}
     </>
   );
 }
 
-export default Menu;
+export default withStyles(styles)(Menu);

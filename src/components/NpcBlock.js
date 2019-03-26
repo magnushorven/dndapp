@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
 import './Block.css';
-import { LSButtons } from './LSButtons';
+import LSButtons from './LSButtons';
+import { ParseAbilityScoreAndModifier } from './../Util';
 
 function ParseNpc (npcString) {
   var npcArray = /^(\w+\s?\w+?):\s(\w+)\s(\w{0,}-?\w{0,})\s(\w+),\s(\w+).\sStr\s(\d+),\sDex\s(\d+),\sCon\s(\d+),\sInt\s(\d+),\sWis\s(\d+),\sCha\s(\d+).\s?([A-Za-z\s\d,-]+).\s?([A-Za-z\s\d,-]+).\s?($|\s?([A-Za-z\s\d,-]+)?)./.exec(npcString);
   //console.log(npcArray)
   return npcArray;
 }
-function ParseAbilityScoreAndModifier (score) {
-  return `${score} (${~~(((score < 10 ? score - 1 : score) - 10) / 2)})`
-}
 function npcType (str, dex, con, int, wiz, cha) {
   let sum = (parseInt(str) + parseInt(dex) + parseInt(con) + parseInt(int) + parseInt(wiz) + parseInt(cha)) / 6;
-  console.log(sum);
   return `monstre_${sum >= 13 ? 'Legendary' : sum >= 11 ? 'Very' : sum >= 9 ? 'Uncommon' : 'Common'}`
 }
-function NpcBlock ({ npcString }) {
-  console.log(npcString);
+function NpcBlock ({ npcString, showButtons = true }) {
   const [npc] = useState(ParseNpc(npcString));
 
   if (!npc) { return null; }
@@ -65,7 +61,7 @@ function NpcBlock ({ npcString }) {
           {npc[14] ? (<p>{npc[14]}</p>) : null}
         </div>
       </div>
-      <LSButtons localStorageString={'npc'} string={npcString} />
+      {showButtons && <LSButtons localStorageString={'npc'} string={npcString} />}
     </div>
   );
 }

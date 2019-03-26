@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Block.css';
-import { LSButtons } from './LSButtons';
+import LSButtons from './LSButtons';
 
 
 function ParseLoot (lootString) {
@@ -8,16 +8,16 @@ function ParseLoot (lootString) {
   return lootArray;
 }
 
-function LootBlock ({ lootString }) {
-  const [loot, setLoot] = useState(ParseLoot(lootString || ''));
+function LootBlock ({ lootString, showButtons = true }) {
+  const [loot] = useState(ParseLoot(lootString || ''));
 
-  if (!loot || loot == '') { return null; }
+  if (!loot || loot === '') { return null; }
   return (
     <div className="bloc">
       <div className="monstre">
         {loot.map((l, i) => <p key={`loot${i}`}>{l}</p>)}
       </div>
-      <LSButtons localStorageString={'loot'} string={lootString} />
+      {showButtons && <LSButtons localStorageString={'loot'} string={lootString} />}
     </div>
   );
 }

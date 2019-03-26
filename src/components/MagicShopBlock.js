@@ -1,7 +1,6 @@
 import React from 'react';
 import './Block.css';
-import { LSButtons } from './LSButtons';
-import { renderItemType } from './../Util'
+import LSButtons from './LSButtons';
 function renderLine () {
   return (
     <div>
@@ -12,8 +11,10 @@ function renderLine () {
 
 function MagicShopBlock ({
   MagicShop,
-  FetchNew }) {
-  if (!MagicShop || MagicShop == '') { return null; }
+  FetchNew = () => { },
+  showButtons = true
+}) {
+  if (!MagicShop || MagicShop === '') { return null; }
 
   return (
     <div className="bloc">
@@ -30,7 +31,7 @@ function MagicShopBlock ({
             <div className="sansSerif">{MagicShop.items.map((item, i) => <p key={i}>{item}</p>)}</div>
           </>) : null}
       </div>
-      <LSButtons localStorageString={'shop'} string={MagicShop} />
+      {showButtons && <LSButtons localStorageString={'shop'} string={MagicShop} />}
     </div>
   );
 }

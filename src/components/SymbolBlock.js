@@ -1,15 +1,15 @@
 import React from 'react';
 import './Block.css';
-import { LSButtons } from './LSButtons';
+import LSButtons from './LSButtons';
 
 
-function SymbolBlock ({ symbolString }) {
+function SymbolBlock ({ symbolString, showButtons = true }) {
   return (
     <div className="bloc">
       <div className="monstre">
         {symbolString && symbolString}
       </div>
-      <LSButtons localStorageString={'symbol'} string={symbolString} />
+      {showButtons && <LSButtons localStorageString={'symbol'} string={symbolString} />}
     </div>
   );
 }

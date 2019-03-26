@@ -1,6 +1,6 @@
 import React from 'react';
 import './Block.css';
-import { LSButtons } from './LSButtons';
+import LSButtons from './LSButtons';
 import { renderItemType } from './../Util'
 function renderLine () {
   return (
@@ -10,8 +10,8 @@ function renderLine () {
   )
 }
 
-function ItemBlock ({ itemString }) {
-  if (!itemString || itemString == '') { return null; }
+function ItemBlock ({ itemString, showButtons = true }) {
+  if (!itemString || itemString === '') { return null; }
 
   return (
     <div className="bloc">
@@ -44,7 +44,7 @@ function ItemBlock ({ itemString }) {
 
         {itemString.source ? <div className="sansSerif"><i>{itemString.source}</i></div> : null}
       </div>
-      <LSButtons localStorageString={'item'} string={itemString} />
+      {showButtons && <LSButtons localStorageString={'item'} string={itemString} />}
     </div>
   );
 }

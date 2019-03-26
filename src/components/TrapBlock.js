@@ -1,14 +1,14 @@
 import React from 'react';
 import './Block.css';
-import { LSButtons } from './LSButtons';
+import LSButtons from './LSButtons';
 
-function TrapBlock ({ trapString }) {
+function TrapBlock ({ trapString, showButtons = true }) {
   return (
     <div className="bloc">
       <div className="monstre">
         {trapString && trapString}
       </div>
-      <LSButtons localStorageString={'trap'} string={trapString} />
+      {showButtons && <LSButtons localStorageString={'trap'} string={trapString} />}
     </div>
   );
 }

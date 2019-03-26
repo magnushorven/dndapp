@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withStyles } from '@material-ui/core'
 import magic_shop_alchemist_description from './../statics/magic_shop_description/magic_shop_alchemist_description.json';
 import magic_shop_armorer_description from './../statics/magic_shop_description/magic_shop_armorer_description.json';
 import magic_shop_scribe_description from './../statics/magic_shop_description/magic_shop_scribe_description.json';
@@ -20,6 +21,22 @@ import magic_shop_weaponsmith_name from './../statics/magic_shop_name/magic_shop
 import magic_shop_location from './../statics/magic_shop_location/magic_shop_location.json';
 import MagicShopBlock from './MagicShopBlock.js';
 import { formatMagicShop, getRandomSubarray } from './../Util';
+import Button from '@material-ui/core/Button'
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    backgroundColor: '#fff',
+    width: '100%',
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+})
 
 function PopulateMagicShops () {
   return {
@@ -32,7 +49,8 @@ function PopulateMagicShops () {
   };
 }
 
-function MagicShopWrapper () {
+const MagicShopWrapper = (props) => {
+  const { classes } = props;
   const [magicShops] = useState(PopulateMagicShops());
   const [selectedMagicShopType, setSelectedMagicShopType] = useState(magicShops.alchemist);
   const [selectedMagicShopDescription, setSelectedMagicShopDescription] = useState(someFunctionRandomSingle(selectedMagicShopType.description));
@@ -56,6 +74,8 @@ function MagicShopWrapper () {
         case 'location':
           setSelectedMagicShopLocation(someFunctionRandomSingle(magic_shop_location))
           break;
+        default:
+          break;
       }
     } else {
       setSelectedMagicShopDescription(someFunctionRandomSingle(selectedMagicShopType.description))
@@ -69,13 +89,13 @@ function MagicShopWrapper () {
   }
   return (
     <>
-      <div style={{ width: '100%', backgroundColor: 'black', display: 'flex' }}>
-        <button onClick={() => { setSelectedMagicShopType(magicShops.alchemist); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Alchemist</button>
-        <button onClick={() => { setSelectedMagicShopType(magicShops.armorer); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Armorer</button>
-        <button onClick={() => { setSelectedMagicShopType(magicShops.scribe); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Scribe</button>
-        <button onClick={() => { setSelectedMagicShopType(magicShops.trader); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Trader</button>
-        <button onClick={() => { setSelectedMagicShopType(magicShops.wandwright); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Wandwright</button>
-        <button onClick={() => { setSelectedMagicShopType(magicShops.weaponsmith); somefunction(); }} style={{ backgroundColor: '#c5c5c5', margin: '10px', padding: '5px' }}>Weaponsmith</button>
+      <div className={classes.root}>
+        <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.alchemist); somefunction(); }}>Alchemist</Button>
+        <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.armorer); somefunction(); }}>Armorer</Button>
+        <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.scribe); somefunction(); }}>Scribe</Button>
+        <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.trader); somefunction(); }}>Trader</Button>
+        <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.wandwright); somefunction(); }}>Wandwright</Button>
+        <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.weaponsmith); somefunction(); }}>Weaponsmith</Button>
       </div>
       <MagicShopBlock
         MagicShop={formatMagicShop(selectedMagicShopDescription, selectedMagicShopLocation, selectedMagicShopName, selectedMagicShopItems)}
@@ -85,4 +105,4 @@ function MagicShopWrapper () {
   )
 }
 
-export default MagicShopWrapper;
+export default withStyles(styles)(MagicShopWrapper);
