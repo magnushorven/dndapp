@@ -15,6 +15,7 @@ import magic_shop_weaponsmith_item from './../statics/magic_shop_item/magic_shop
 import magic_shop_alchemist_name from './../statics/magic_shop_name/magic_shop_alchemist_name.json';
 import magic_shop_armorer_name from './../statics/magic_shop_name/magic_shop_armorer_name.json';
 import magic_shop_scribe_name from './../statics/magic_shop_name/magic_shop_scribe_name.json';
+import magic_shop_tavern_name from './../statics/magic_shop_name/magic_shop_tavern_name.json';
 import magic_shop_trader_name from './../statics/magic_shop_name/magic_shop_trader_name.json';
 import magic_shop_wandwright_name from './../statics/magic_shop_name/magic_shop_wandwright_name.json';
 import magic_shop_weaponsmith_name from './../statics/magic_shop_name/magic_shop_weaponsmith_name.json';
@@ -43,6 +44,7 @@ function PopulateMagicShops () {
     'alchemist': { description: magic_shop_alchemist_description, item: magic_shop_alchemist_item, name: magic_shop_alchemist_name },
     'armorer': { description: magic_shop_armorer_description, item: magic_shop_armorer_item, name: magic_shop_armorer_name },
     'scribe': { description: magic_shop_scribe_description, item: magic_shop_scribe_item, name: magic_shop_scribe_name },
+    'tavern': { description: magic_shop_trader_description, item: [], name: magic_shop_tavern_name },
     'trader': { description: magic_shop_trader_description, item: magic_shop_trader_item, name: magic_shop_trader_name },
     'wandwright': { description: magic_shop_wandwright_description, item: magic_shop_wandwright_item, name: magic_shop_wandwright_name },
     'weaponsmith': { description: magic_shop_weaponsmith_description, item: magic_shop_weaponsmith_item, name: magic_shop_weaponsmith_name }
@@ -93,6 +95,7 @@ const MagicShopWrapper = (props) => {
         <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.alchemist); somefunction(); }}>Alchemist</Button>
         <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.armorer); somefunction(); }}>Armorer</Button>
         <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.scribe); somefunction(); }}>Scribe</Button>
+        <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.tavern); somefunction(); }}>Tavern</Button>
         <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.trader); somefunction(); }}>Trader</Button>
         <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.wandwright); somefunction(); }}>Wandwright</Button>
         <Button variant="contained" className={classes.button} onClick={() => { setSelectedMagicShopType(magicShops.weaponsmith); somefunction(); }}>Weaponsmith</Button>

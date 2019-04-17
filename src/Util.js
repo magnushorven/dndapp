@@ -82,6 +82,7 @@ export function formatMagicShop (description, location, name, items) {
 }
 
 export function getRandomSubarray (items, size) {
+  if (items.length === 0) return []
   var shuffled = items.slice(0), i = items.length, temp, index;
   while (i--) {
     index = Math.floor((i + 1) * Math.random());
